@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link, useLoaderData } from "react-router-dom";
+import CartUser from "./components/CartUser/CartUser";
+
 
 function App() {
+  const loadedUser = useLoaderData();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="max-w-screen-xl mx-auto">
+         <div className='mx-4 my-6 bg-green-500 '>
+                <h2 className='text-3xl font-semibold text-center p-4'>User Management System</h2>
+            </div>
+            <div className='mx-20 mt-20 mb-6'>
+                <Link to='/addUser'><button className="btn btn-success">Add New user</button></Link>
+            </div>
+
+             <div>
+                 {
+                   loadedUser.map(user => <CartUser key={user._id}
+                   user ={user}></CartUser>)
+                 }
+             </div>
     </div>
   );
 }
